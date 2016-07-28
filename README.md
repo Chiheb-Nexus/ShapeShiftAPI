@@ -21,7 +21,7 @@ class Test(ShapeShiftAPI):
 	def __init__(self):
 	
 		ShapeShiftAPI.__init__(self)
-		print(self.return_shapeshift_coins(True)) # Return all available ShapeShift coins
+		print(self.return_shapeshift_coins(True)) # Return all available ShapeShift coins symbol
 
 
 if __name__ == '__main__':
