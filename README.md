@@ -1,5 +1,5 @@
 # ShapeShiftAPI
-A complete API wrapper written in Python3 for shapeshift.io
+A complete [shapeshift.io](https://shapeshift.io/) API wrapper written in Python3
 
 # Usage
 
