@@ -83,13 +83,13 @@ class ShapeShiftAPI(object):
 			print("Usage:")
 			return None
 
-	def shapeshift_candel_pending_tx(self, adress = None):
+	def shapeshift_candel_pending_tx(self, address = None):
 		"""
 		@FIXME: Not working
 		"""
 		__url = self.url_cancel_pending
 		if adress != None:
-			__post_data = {"adress": adress}
+			__post_data = {"address": address}
 			return self.post_exchange(url = __url, post_data = __post_data)
 		else:
 			print("Usage:")
