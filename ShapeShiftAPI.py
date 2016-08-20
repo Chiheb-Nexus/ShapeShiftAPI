@@ -1,6 +1,6 @@
-#!/usr/bin python3
+#!/usr/bin/python3
 # ShapeShiftAPI : Complete API wrapper for shapeshift.io
-# 
+#
 # Copyright © 2016 Chiheb Nexus
 #
 # This program is free software; you can redistribute it and/or modify
@@ -11,7 +11,7 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-#  
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
@@ -45,8 +45,8 @@ class ShapeShiftAPI(object):
 
 	def shapeshift_fixed_tx_timeleft(self, adress = None):
 		"""
-		@input: 
-			adress : is the deposit address to look up. 
+		@input:
+			adress : is the deposit address to look up.
 			NOTE: This request is valid only for fixed amount transaction
 
 		@return (if success): example:
@@ -61,9 +61,9 @@ class ShapeShiftAPI(object):
 			print("Usage: ShapeShiftAPI.shapeshift_fixed_tx_timeleft(adress = 'Your adress')")
 			return None
 
-	def shapeshift_shift_tx_status(self, adress = None, apiKey = None):
+	def shapeshift_shift_tx_status(self, address = None, apiKey = None):
 		"""
-		@input: 
+		@input:
 			adress : (Required) the address that output coin was sent to for the shift
 			apiKey : (Optional) is the affiliate's PRIVATE api key
 		@return (if success):
@@ -71,19 +71,19 @@ class ShapeShiftAPI(object):
 		@return (if failure):
 			{'address': '19533VePoBBsceTztqmtRgjVkMKHCta6URs',
 			 'error': 'This address is NOT a ShapeShift deposit address.
-			  Do not send anything to it.', 'status': 'error'} 
+			  Do not send anything to it.', 'status': 'error'}
 		"""
-		if adress != None and apiKey != None:
-			__url = self.url_tx_status+adress+"/"+apiKey
+		if address != None and apiKey != None:
+			__url = self.url_tx_status+address+"/"+apiKey
 			return self.load_url(__url)
-		elif adress != None and apiKey == None:
-			__url = self.url_tx_status+adress
+		elif address != None and apiKey == None:
+			__url = self.url_tx_status+address
 			return self.load_url(__url)
 		else:
 			print("Usage:")
 			return None
 
-	def shapeshift_candel_pending_tx(self, address = None):
+	def shapeshift_cancel_pending_tx(self, address = None):
 		"""
 		@FIXME: Not working
 		"""
@@ -99,7 +99,7 @@ class ShapeShiftAPI(object):
 		"""
 		Same as shapeshift_shift_request(...input...) but using a fixed amount
 
-		@input: 
+		@input:
 			* - 1st scenario:
 			amount = the amount to be sent to the withdrawal address
 			withdrawal = the address for coin to be sent to
@@ -140,7 +140,7 @@ class ShapeShiftAPI(object):
 
 	def shapeshift_request_mail(self, mail = None, txid = None):
 		"""
-		@input: 
+		@input:
 			mail : Reception email
 			txid : ShapeShift transaction ID
 
@@ -160,7 +160,7 @@ class ShapeShiftAPI(object):
 
 	def post_exchange(self, url = None, post_data = None):
 		"""
-		Communication with ShapeShift server through POST and GET
+			Communication with ShapeShift server through POST and GET
 		"""
 		try:
 			json_data = dumps(post_data).encode("UTF8")
@@ -176,7 +176,7 @@ class ShapeShiftAPI(object):
 
 	def shapeshift_shift_request(self,pair=None,withdrawal=None,returnAddress=None,destTag=None,rsAddress=None,apiKey=None):
 		"""
-		@input: 
+		@input:
 			pair : (Required) What coins are being exchanged in the form [input coin]_[output coin]  ie btc_ltc
 			withdrawal : (Required) The address for resulting coin to be sent to
 			returnAddress : (Optional) Address to return deposit to if anything goes wrong with exchange
@@ -184,7 +184,7 @@ class ShapeShiftAPI(object):
 			rsAddress : (Optional) For new NXT accounts to be funded, you supply this on NXT payment to you
 			apiKey : (Optional) Your affiliate PUBLIC KEY, for volume tracking, affiliate payments, split-shifts, etc...
 
-		@return (if success) example for the pair 'btc_eth': type = dict : 
+		@return (if success) example for the pair 'btc_eth': type = dict :
 		{'withdrawal': '0xea674fdde714fd979de3edf0f56aa9716b898ec8', 'depositType': 'BTC',
 		 'public': None, 'orderId': '69116c9a-9e60-4dd6-aeed-22dfa0891bd4',
 		  'withdrawalType': 'ETH', 'deposit': '15joRVhXifqVoe8v7k4cX7o4L3L3MTrbkP', 'apiPubKey': 'shapeshift'}
@@ -208,7 +208,7 @@ class ShapeShiftAPI(object):
 			return None
 
 
-	def check_adress(self, address = None, coin = None):
+	def check_address(self, address = None, coin = None):
 		"""
 		if address != None and coin != None:
 			return bool (True or False) : True = valid address and/or coin / False = invalid address and/or coin
@@ -230,7 +230,7 @@ class ShapeShiftAPI(object):
 		else:
 			return only ShapeShift's supported coins symbols (2)
 
-		@return(1): dict of dicts {'coinx':{...}, ..., 'coiny':{...}} example: 
+		@return(1): dict of dicts {'coinx':{...}, ..., 'coiny':{...}} example:
 		{'VOX': {'status': 'available', 'symbol': 'VOX', 'name': 'Voxels',
 		 'image': 'https://shapeshift.io/images/coins/voxels.png'},
 		 ...
@@ -254,9 +254,9 @@ class ShapeShiftAPI(object):
 		else:
 			return only ShapeShift's supported coin market (2)
 
-		@return(1): tuple of dicts [{...}, ..., {...}] example: 
+		@return(1): tuple of dicts [{...}, ..., {...}] example:
 		[{'limit': 198.58387989, 'minerFee': 0.01, 'min': 0.01071429, 'rate': '1.62633730', 'maxLimit': 198.58387989,
-		 'pair': 'NVC_PPC'}, 
+		 'pair': 'NVC_PPC'},
 		 ....
 		 {'limit': 198.58387989, 'minerFee': 0.005, 'min': 0.005, 'rate': '1.73659745', 'maxLimit': 198.58387989,
 		  'pair': 'NVC_NMC'}]
@@ -264,7 +264,7 @@ class ShapeShiftAPI(object):
 		@return(2): dict {...} example:
 		{'pair': 'BTC_ETH', 'minimum': 0.00041854, 'limit': 1.52842099, 'minerFee': 0.01, 'maxLimit': 3.05684198,
 		 'rate': 47.60484755}
- 
+
 		"""
 		__url = ""
 		if pair == None:
@@ -287,12 +287,12 @@ class ShapeShiftAPI(object):
 		else:
 			print("Please provide a valid pair!\n-> use: ShapeShiftAPI.return_pair_limit(pair='coin1_coin2')")
 			return []
-		
+
 	def return_shapeshift_pairs_info(self):
 		"""
 		return all supported ShapeShift's pairs informations
 
-		@return: list of dicts [{...}, ..., {...}] example:   
+		@return: list of dicts [{...}, ..., {...}] example:
 		[{'pair': 'NMC_NVC', 'rate': '0.49737499', 'min': 0.00349153, 'minerFee': 0.001,
 		 'maxLimit': 69.361676, 'limit': 69.361676},
 		 ........
